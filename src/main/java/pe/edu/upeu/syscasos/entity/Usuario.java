@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -41,7 +42,8 @@ public class Usuario {
 	@Column(name="estado")
 	private char estado;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@JsonManagedReference
 	@JoinColumn(name="empleado_id", referencedColumnName = "id")
 	private Empleado empleado;
 	
@@ -56,5 +58,6 @@ public class Usuario {
 				joinColumns = @JoinColumn(name="usuario_id", referencedColumnName = "id"),
 				inverseJoinColumns = @JoinColumn(name="rol_id", referencedColumnName = "id")
 			)
+	@JsonManagedReference
 	private Set<Rol> roles = new HashSet<>();
 }

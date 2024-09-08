@@ -3,6 +3,7 @@ package pe.edu.upeu.syscasos.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -39,7 +40,7 @@ public class Rol {
 	private Set<Acceso> accesos= new HashSet<>();
 	
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-	@JsonIgnore
+	@JsonBackReference
 	private Set<Usuario> usuarios= new HashSet<>();
 	
 }

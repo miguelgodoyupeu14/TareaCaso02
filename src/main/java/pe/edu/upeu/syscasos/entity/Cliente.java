@@ -3,6 +3,7 @@ package pe.edu.upeu.syscasos.entity;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -38,6 +39,7 @@ public class Cliente {
 	private String apellidos;
 	@Column(name = "fecha_nac")	
 	@Temporal(TemporalType.DATE) 
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date fecha_nac;
 	@Column(name="estado")
 	private char estado;
